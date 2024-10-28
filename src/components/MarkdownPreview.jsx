@@ -1,9 +1,10 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import rehypeHighlight from "rehype-highlight";
+import { Link } from "react-router-dom";
 
 const MarkdownPreview = ({ markdown, isHtmlPreview }) => {
   return (
@@ -16,9 +17,8 @@ const MarkdownPreview = ({ markdown, isHtmlPreview }) => {
           <pre className="whitespace-pre-wrap text-xs">{markdown}</pre>
         ) : (
           <ReactMarkdown
-            children={markdown} // Make sure 'markdown' is a string
             remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw, rehypeHighlight]}
+            rehypePlugins={[rehypeRaw]}
             components={{
               h1: ({ children }) => (
                 <h1 className="text-4xl font-bold my-2">{children}</h1>
@@ -32,47 +32,40 @@ const MarkdownPreview = ({ markdown, isHtmlPreview }) => {
               h4: ({ children }) => (
                 <h4 className="text-xl font-semibold my-2">{children}</h4>
               ),
-              h5: ({ children }) => (
-                <h5 className="text-lg font-semibold my-2">{children}</h5>
-              ),
-              h6: ({ children }) => (
-                <h6 className="text-base font-semibold my-2">{children}</h6>
-              ),
               p: ({ children }) => <p className="my-2">{children}</p>,
               a: ({ children, href }) => (
-                <a
-                  href={href}
+                <Link
+                  to={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-500 hover:underline"
                 >
                   {children}
-                </a>
+                </Link>
               ),
-              ul: ({ children }) => (
-                <ul className="list-disc pl-5 my-2">{children}</ul>
-              ),
-              li: ({ children }) => <li className="my-1">{children}</li>,
-              code({ node, inline, className, children, ...props }) {
+              code({ inline, className, children, ...props }) {
                 const match = /language-(\w+)/.exec(className || "");
+
+                // Block code with syntax highlighting
                 return !inline && match ? (
                   <SyntaxHighlighter
+                    style={oneDark}
                     language={match[1]}
                     PreTag="div"
                     {...props}
                   >
-                    {String(children).trim()}{" "}
-                    {/* Ensure children are treated as a string */}
+                    {String(children).replace(/\n$/, "")}
                   </SyntaxHighlighter>
                 ) : (
-                  <code className={className} {...props}>
-                    {String(children).trim()}{" "}
-                    {/* Ensure children are treated as a string */}
+                  <code className="bg-gray-100 text-red-500 p-1 rounded">
+                    {children}
                   </code>
                 );
               },
             }}
-          />
+          >
+            {markdown}
+          </ReactMarkdown>
         )}
       </div>
     </div>
