@@ -127,6 +127,28 @@ const MarkdownPreview = ({ markdown, isHtmlPreview, setIsHtmlPreview }) => {
               li: ({ children }) => (
                 <li className=" text-[#24292e]">{children}</li>
               ),
+              table: ({ children }) => (
+                <table className="w-full border-collapse border border-gray-300 mt-4">
+                  {children}
+                </table>
+              ),
+              thead: ({ children }) => (
+                <thead className="bg-gray-100 border-b border-gray-300">
+                  {children}
+                </thead>
+              ),
+              tbody: ({ children }) => <tbody>{children}</tbody>,
+              tr: ({ children }) => (
+                <tr className="border-b border-gray-300">{children}</tr>
+              ),
+              th: ({ children }) => (
+                <th className="px-4 py-2 text-left font-semibold border border-gray-300 bg-gray-100">
+                  {children}
+                </th>
+              ),
+              td: ({ children }) => (
+                <td className="px-4 py-2 border border-gray-300">{children}</td>
+              ),
             }}
           >
             {markdown}
