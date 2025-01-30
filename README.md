@@ -11,6 +11,11 @@ A feature-rich Markdown Editor built with **ReactJS** and **TailwindCSS**, desig
 - **Word, Line, and Character Counter:** Keep track of your content with dynamic counters that update as you type.  
 - **Copy Markdown Content:** Quickly copy the raw Markdown code to your clipboard with a single click.  
 - **Responsive and Minimal UI:** Built with TailwindCSS for a clean, user-friendly interface.  
+- **Sidebar with Predefined Sections:**  
+  - Browse a list of predefined sections and search for specific ones. Click on any section to load its default Markdown content.  
+- **Custom Section Creation:** Easily create your own custom sections with a simple click of the "Custom Section" button.  
+- **Reorder Sections:** You can now reorder your selected sections by dragging and dropping them in the editor.  
+- **Improved Table Preview:** Enhanced table rendering in the preview to ensure proper display.  
 
 ## 🛠️ Built With  
 - **ReactJS:** For building the interactive and dynamic user interface.  
@@ -45,6 +50,8 @@ A feature-rich Markdown Editor built with **ReactJS** and **TailwindCSS**, desig
 2. Import a `.md` file or start typing directly in the editor.  
 3. Use the **Preview** button to view the rendered content or the **Raw** button to see the Markdown source code.  
 4. Export your work or copy the Markdown content as needed.  
+5. Use the sidebar to search for predefined sections and add them to your document.  
+6. Create custom sections and reorder them as per your requirements.  
 
 ## 🌟 Contributing  
 Contributions are welcome! Feel free to fork this repository and create a pull request with your improvements or suggestions.  
